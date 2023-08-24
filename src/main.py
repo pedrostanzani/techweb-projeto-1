@@ -15,7 +15,7 @@ def run_server():
     server_socket.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
     server_socket.bind((SERVER_HOST, SERVER_PORT))
     server_socket.listen()
-    print(f"✓ Server running on http://{SERVER_HOST}:{SERVER_PORT}.")
+    print(f"✓ Server running on http://{SERVER_HOST}:{SERVER_PORT}.\n")
 
     while True:
         client_connection, client_address = server_socket.accept()
@@ -23,8 +23,7 @@ def run_server():
         # Receive and interpret an HTTP request
         request = client_connection.recv(1024).decode()
         request = Request.interpret_request(request)
-        print('*'*100)
-        print(request.raw)
+        request.log()
 
         # Router calls requested route
         route = request.route

@@ -2,6 +2,9 @@ class Request:
     def __init__(self, raw: str, route: str):
         self.raw = raw
         self.route = route
+
+    def log(self):
+        print(self.raw)
     
     @classmethod
     def interpret_request(cls, req: str):

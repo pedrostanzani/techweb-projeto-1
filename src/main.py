@@ -1,13 +1,8 @@
 import socket
-from pathlib import Path
-from utils import extract_route, read_file, build_response
-from routes import index
 
 from request import Request
 from router import handle_request
 
-CUR_DIR = Path(__file__).parent
-print("current directory from main.py:", CUR_DIR)
 SERVER_HOST = '0.0.0.0'
 SERVER_PORT = 8080
 
@@ -28,16 +23,7 @@ def run_server():
         request.log()
 
         # Router calls requested route
-        response = handle_request(request, current_directory=CUR_DIR)
-        route = request.route
-        filepath = CUR_DIR / route
-        if filepath.is_file():
-            response = build_response() + read_file(filepath)
-        elif route == '':
-            response = index(request.raw)
-        else:
-            response = build_response(code=404)
-
+        response = handle_request(request)
         client_connection.sendall(response)
         client_connection.close()
 

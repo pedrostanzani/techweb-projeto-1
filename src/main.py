@@ -3,9 +3,11 @@ from pathlib import Path
 from utils import extract_route, read_file, build_response
 from routes import index
 
-from core.request import Request
+from request import Request
+from router import handle_request
 
 CUR_DIR = Path(__file__).parent
+print("current directory from main.py:", CUR_DIR)
 SERVER_HOST = '0.0.0.0'
 SERVER_PORT = 8080
 
@@ -26,6 +28,7 @@ def run_server():
         request.log()
 
         # Router calls requested route
+        response = handle_request(request, current_directory=CUR_DIR)
         route = request.route
         filepath = CUR_DIR / route
         if filepath.is_file():

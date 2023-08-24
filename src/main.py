@@ -3,6 +3,8 @@ from pathlib import Path
 from utils import extract_route, read_file, build_response
 from routes import index
 
+from core.request import Request
+
 CUR_DIR = Path(__file__).parent
 SERVER_HOST = '0.0.0.0'
 SERVER_PORT = 8080
@@ -20,16 +22,17 @@ def run_server():
 
         # Receive and interpret an HTTP request
         request = client_connection.recv(1024).decode()
+        request = Request.interpret_request(request)
         print('*'*100)
-        print(request)
+        print(request.raw)
 
         # Router calls requested route
-        route = extract_route(request)
+        route = request.route
         filepath = CUR_DIR / route
         if filepath.is_file():
             response = build_response() + read_file(filepath)
         elif route == '':
-            response = index(request)
+            response = index(request.raw)
         else:
             response = build_response(code=404)
 

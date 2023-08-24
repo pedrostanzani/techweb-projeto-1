@@ -11,7 +11,7 @@ def handle_request(request: Request):
     if filepath.is_file():
         response = build_response() + read_file(filepath)
     elif route == '':
-        response = index(request.raw)
+        response = index(request)
     else:
         response = build_response(code=404)
 

@@ -1,27 +1,28 @@
 class Request:
-    def __init__(self, raw: str, route: str):
+    def __init__(self, raw: str, route: str, method: str):
         self.raw = raw
         self.route = route
+        self.method = method
 
     def log(self):
         print(self.raw)
     
     @classmethod
     def interpret_request(cls, req: str):
-        route = cls.extract_route(req)
+        method, route = cls.extract_metadata(req)
         if route is None:
             raise Exception("Invalid request format.")
-        return cls(req, route)
+        return cls(req, route, method)
     
     @staticmethod
-    def extract_route(req: str):
+    def extract_metadata(req: str):
         lines = req.splitlines()
         if len(lines) == 0:
             return None
         
         first_line = lines[0]
-        path = first_line.split()[1]
+        method, path = first_line.split()[0:2]
         if path[0] == '/':
             path = path[1:]
 
-        return path
+        return method, path

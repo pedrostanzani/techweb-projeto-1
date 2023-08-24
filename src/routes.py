@@ -7,10 +7,10 @@ db = Database('database')
 
 def index(request):
 # A string de request sempre começa com o tipo da requisição (ex: GET, POST)
-    if request.startswith('POST'):
-        request = request.replace('\r', '')  # Remove caracteres indesejados
+    if request.method == 'POST':
+        raw_request = request.raw.replace('\r', '')  # Remove caracteres indesejados
         # Cabeçalho e corpo estão sempre separados por duas quebras de linha
-        partes = request.split('\n\n')
+        partes = raw_request.split('\n\n')
         corpo = partes[1]
         params = {}
 

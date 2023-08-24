@@ -18,34 +18,11 @@ def read_file(path: Path):
         content = file.read()
     return content
 
-def load_data(json_filename):
-    path = f'data/{json_filename}'
-    with open(path, 'r') as file:
-        content = file.read()
-        data = json.loads(content)
-    return data
-
 def load_template(template_filename):
     path = f'templates/{template_filename}'
     with open(path, 'r') as file:
         content = file.read()
     return content
-
-
-def add_note_to_json_file(payload):
-    print("payload===", payload)
-
-    notes = []
-
-    with open('data/notes.json', 'r') as file:
-        content = file.read()
-        data = json.loads(content)
-
-    notes += data
-    notes += [payload]
-
-    with open('data/notes.json', 'w') as file:
-        file.write(json.dumps(notes))
 
 def build_response(body='', code=200, reason='OK', headers=''):
     headers = f"\n{headers}" if headers else ""

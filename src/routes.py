@@ -1,7 +1,7 @@
 from database import Database, Note
 
 from urllib.parse import unquote_plus
-from utils import load_data, load_template, add_note_to_json_file, build_response
+from utils import load_template, build_response
 
 db = Database('database')
 
@@ -26,7 +26,6 @@ def index(request):
 
         db.add(Note(title=params['titulo'], content=params['detalhes']))
 
-        # add_note_to_json_file(params)
         return build_response(code=303, reason='See Other', headers='Location: /')
     
     # Cria uma lista de <li>'s para cada anotação

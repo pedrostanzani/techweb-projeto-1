@@ -1,7 +1,7 @@
-<div class="card">
+<div class="card" data-note-id={note_id}>
   <div class="card-title-container">
     <h3 class="card-title">{title}</h3>
-    <button class="card-delete-btn">
+    <button class="card-delete-btn" onclick="deleteNote({note_id});">
       <img class="card-delete-icon" src="static/img/icons/trash.svg" alt="Delete note.">
     </button>
   </div>

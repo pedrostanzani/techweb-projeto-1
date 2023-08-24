@@ -32,7 +32,7 @@ def index(request):
     # Se tiver curiosidade: https://docs.python.org/3/tutorial/datastructures.html#list-comprehensions
     note_template = load_template('components/note.html')
     notes_li = [
-        note_template.format(title=note_object.title, details=note_object.content)
+        note_template.format(title=note_object.title, details=note_object.content, note_id=note_object.id)
         for note_object in db.get_all()
     ]
     notes = '\n'.join(notes_li)

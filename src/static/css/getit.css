@@ -156,7 +156,7 @@ Algumas informações úteis e dicas:
    margin-top: 4rem;
    flex-wrap: wrap;
    justify-content: space-around;
-   gap: 0.75rem;
+   gap: 1rem;
  }
  
  .card {
@@ -172,11 +172,6 @@ Algumas informações úteis e dicas:
    .card-container {
      padding: 0 3rem;
    }
- }
- 
- .card-title {
-   font-size: 1.25rem;
-   margin-bottom: 1rem;
  }
  
  .card-content {
@@ -202,7 +197,34 @@ Algumas informações úteis e dicas:
  .card-rotation-9  { transform: rotate(-3deg); }
  .card-rotation-10 { transform: rotate(-4deg); }
  .card-rotation-11 { transform: rotate(-5deg); }
- 
+
+ .card-title-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: start;
+  margin-bottom: 1rem;
+ }
+
+ .card-title {
+  font-size: 1.25rem;
+}
+
+.card-delete-icon {
+  padding-top: 2px;
+  width: 1rem;
+  height: 1rem;
+}
+
+.card-delete-btn {
+  background-color: inherit;
+  border: none;
+  padding: 0;
+}
+
+.card-delete-btn:hover {
+  cursor: pointer;
+}
  
  
  /* Você pode usar o CSS comentado abaixo, se ajudar */

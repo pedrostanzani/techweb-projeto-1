@@ -9,7 +9,10 @@ def handle_request(request: Request):
     route = request.route
     filepath = CUR_DIR / route
     if filepath.is_file():
-        response = build_response() + read_file(filepath)
+        if str(filepath).endswith(".svg"):
+            response = build_response(headers="Content-Type: image/svg+xml") + read_file(filepath)
+        else:
+            response = build_response() + read_file(filepath)
     elif route == '':
         response = index(request)
     else:

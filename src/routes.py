@@ -40,3 +40,11 @@ def index(request):
     response_body = load_template('index.html').format(notes=notes)
     response = build_response(body=response_body)
     return response
+
+
+def notes(request, note_id):
+    if request.method == 'DELETE':
+        note_id = int(note_id)
+        db.delete(note_id)
+        return build_response(code=204)
+    return build_response(code=405)

@@ -236,6 +236,10 @@ Algumas informações úteis e dicas:
   transition-duration: 150ms;
   border-radius: 9999px;
 }
+
+.form-wrapper {
+  padding: 0 1rem;
+}
  
  
  /* Você pode usar o CSS comentado abaixo, se ajudar */

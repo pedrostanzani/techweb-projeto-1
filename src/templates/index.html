@@ -24,23 +24,23 @@
     </div>
 
     <main class="container">
-      <form method="post" class="form-card">
-        <input
-          class="form-card-title"
-          type="text"
-          name="titulo"
-          placeholder="Título"
-        />
-        <textarea
-          class="autoresize"
-          name="detalhes"
-          placeholder="Digite o conteúdo..."
-        ></textarea>
-        <button class="btn" type="submit">Criar</button>
-      </form>
-      <div class="card-container">
-        {notes}
+      <div class="form-wrapper">
+        <form method="post" class="form-card">
+          <input
+            class="form-card-title"
+            type="text"
+            name="titulo"
+            placeholder="Título"
+          />
+          <textarea
+            class="autoresize"
+            name="detalhes"
+            placeholder="Digite o conteúdo..."
+          ></textarea>
+          <button class="btn" type="submit">Criar</button>
+        </form>
       </div>
+      <div class="card-container">{notes}</div>
     </main>
 
     <script type="text/javascript" src="static/js/getit.js"></script>

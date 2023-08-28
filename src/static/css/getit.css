@@ -204,6 +204,7 @@ Algumas informações úteis e dicas:
   justify-content: space-between;
   align-items: start;
   margin-bottom: 1rem;
+  gap: 2px;
  }
 
  .card-title {
@@ -230,6 +231,35 @@ Algumas informações úteis e dicas:
 .card-delete-btn:hover {
   cursor: pointer;
   background-color: #ef4444;
+  color: white;
+  transition-property: all;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 150ms;
+  border-radius: 9999px;
+}
+
+.card-actions-container {
+  display: flex;
+  flex-direction: row;
+  gap: 1px;
+
+}
+
+.card-edit-btn {
+  background-color: inherit;
+  border: none;
+  padding: 0;
+  width: 1.5rem;
+  height: 1.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: inherit;
+}
+
+.card-edit-btn:hover {
+  cursor: pointer;
+  background-color: #6b7280;
   color: white;
   transition-property: all;
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);

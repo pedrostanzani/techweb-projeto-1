@@ -48,3 +48,9 @@ def notes(request, note_id):
         db.delete(note_id)
         return build_response(code=204)
     return build_response(code=405)
+
+
+def edit_note(request, note_id):
+    response_body = load_template('edit.html').format(note_id=note_id)
+    response = build_response(body=response_body)
+    return response

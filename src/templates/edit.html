@@ -25,7 +25,13 @@
 
     <main class="container">
       <div class="form-wrapper">
-        <form method="post" class="form-card">
+        <div class="back-btn-wrapper">
+          <a class="back-btn" href="/">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-left"><path d="m12 19-7-7 7-7"/><path d="M19 12H5"/></svg>
+            <span>Voltar</span>
+          </a>
+        </div>
+        <form method="post" class="form-card form-card-tight">
           <input
             class="form-card-title"
             type="text"
@@ -37,13 +43,15 @@
             name="detalhes"
             placeholder="Digite o conteúdo..."
           ></textarea>
-          <button class="btn" type="submit">Criar</button>
+          <button class="btn" type="submit">Editar</button>
         </form>
       </div>
-      <div class="card-container">{notes}</div>
     </main>
 
     <script type="text/javascript" src="/static/js/getit.js"></script>
-    <script type="text/javascript" src="/static/js/notes.js"></script>
+    <script type="text/javascript" src="/static/js/edit.js"></script>
+    <script>
+      hey({note_id})
+    </script>
   </body>
 </html>

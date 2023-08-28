@@ -10,6 +10,8 @@ def handle_request(request: Request):
     route = request.route
     filepath = CUR_DIR / route
 
+    print("ROUTE >>", route)
+
     # Static file handling
     if filepath.is_file():
         if str(filepath).endswith(".svg"):
@@ -30,6 +32,15 @@ def handle_request(request: Request):
         if not note_id.isdigit():
             response = build_response(code=400)
         response = routes.notes(request, note_id)
+
+    elif route.startswith('editar'):
+        paths = route.split('/')
+        if paths != 2:
+            response = build_response(code=400)
+        note_id = paths[-1]
+        if not note_id.isdigit():
+            response = build_response(code=400)
+        response = routes.edit_note(request, note_id)
 
     else:
         response = build_response(code=404)

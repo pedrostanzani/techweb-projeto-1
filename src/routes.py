@@ -8,24 +8,8 @@ db = Database('database')
 def index(request):
 # A string de request sempre começa com o tipo da requisição (ex: GET, POST)
     if request.method == 'POST':
-        raw_request = request.raw.replace('\r', '')  # Remove caracteres indesejados
-        # Cabeçalho e corpo estão sempre separados por duas quebras de linha
-        partes = raw_request.split('\n\n')
-        corpo = partes[1]
-        params = {}
-
-        # Preencha o dicionário params com as informações do corpo da requisição
-        # O dicionário conterá dois valores, o título e a descrição.
-        # Posteriormente pode ser interessante criar uma função que recebe a
-        # requisição e devolve os parâmetros para desacoplar esta lógica.
-        # Dica: use o método split da string e a função unquote_plus
-        for chave_valor in corpo.split('&'):
-            raw_key_value_pair = unquote_plus(chave_valor)
-            key, value = raw_key_value_pair.split('=')
-            params[key] = value
-
+        params = request.get_query_params()
         db.add(Note(title=params['titulo'], content=params['detalhes']))
-
         return build_response(code=303, reason='See Other', headers='Location: /')
     
     # Cria uma lista de <li>'s para cada anotação
@@ -47,6 +31,7 @@ def notes(request, note_id):
         note_id = int(note_id)
         db.delete(note_id)
         return build_response(code=204)
+    
     if request.method == 'GET':
         note_id = int(note_id)
         note = db.get(note_id)
@@ -54,6 +39,7 @@ def notes(request, note_id):
             return build_response(code=404)
         print(note.to_json())
         return build_response(code=200, body=note.to_json(), headers="Content-Type: application/json")
+    
     return build_response(code=405)
 
 
@@ -62,26 +48,12 @@ def edit_note(request, note_id):
       response_body = load_template('edit.html').format(note_id=note_id)
       response = build_response(body=response_body)
       return response
+    
     if request.method == 'POST':
-        raw_request = request.raw.replace('\r', '')  # Remove caracteres indesejados
-        # Cabeçalho e corpo estão sempre separados por duas quebras de linha
-        partes = raw_request.split('\n\n')
-        corpo = partes[1]
-        params = {}
-
-        # Preencha o dicionário params com as informações do corpo da requisição
-        # O dicionário conterá dois valores, o título e a descrição.
-        # Posteriormente pode ser interessante criar uma função que recebe a
-        # requisição e devolve os parâmetros para desacoplar esta lógica.
-        # Dica: use o método split da string e a função unquote_plus
-        for chave_valor in corpo.split('&'):
-            raw_key_value_pair = unquote_plus(chave_valor)
-            key, value = raw_key_value_pair.split('=')
-            params[key] = value
-
+        params = request.get_query_params()
         db.update(Note(title=params['titulo'], content=params['detalhes'], id=note_id))
-
         return build_response(code=303, reason='See Other', headers='Location: /')
+    
     return build_response(code=405)
 
 

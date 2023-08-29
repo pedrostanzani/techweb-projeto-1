@@ -1,3 +1,6 @@
+from urllib.parse import unquote_plus
+
+
 class Request:
     def __init__(self, raw: str, route: str, method: str):
         self.raw = raw
@@ -6,6 +9,18 @@ class Request:
 
     def log(self):
         print(self.raw)
+
+    def get_query_params(self):
+        raw_request = self.raw.replace('\r', '')
+        partes = raw_request.split('\n\n')
+        corpo = partes[1]
+        params = {}
+
+        for chave_valor in corpo.split('&'):
+            chave, valor = chave_valor.split('=')
+            params[unquote_plus(chave)] = unquote_plus(valor)
+
+        return params
     
     @classmethod
     def interpret_request(cls, req: str):

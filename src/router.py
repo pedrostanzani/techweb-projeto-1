@@ -25,12 +25,17 @@ def handle_request(request: Request):
 
     # @route : /api/notes
     elif route.startswith('api/notes'):
+        if route.endswith('/'):
+            route = route[:-1]
         paths = route.split('/')
-        if paths != 3:
-            response = build_response(code=400)
+
+        if len(paths) != 3:
+            return build_response(code=400)
+            
         note_id = paths[-1]
         if not note_id.isdigit():
-            response = build_response(code=400)
+            return build_response(code=400)
+        
         response = routes.notes(request, note_id)
 
     elif route.startswith('editar'):

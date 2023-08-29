@@ -1,3 +1,4 @@
+import json
 import sqlite3
 from dataclasses import dataclass
 
@@ -13,6 +14,9 @@ class Note:
     id: int = None
     title: str = None
     content: str = ''
+
+    def to_json(self):
+        return json.dumps({ "id": self.id, "title": self.title, "content": self.content }, ensure_ascii=False)
 
 
 class Database:
@@ -35,6 +39,16 @@ class Database:
         cur = self.conn.cursor()
         res = cur.execute(query)
         return [ Note(id=id_, title=title, content=content) for id_, title, content in res.fetchall() ]
+    
+    def get(self, note_id: int):
+        args = (note_id,)
+        query = "SELECT id, title, content FROM note WHERE id = ?;"
+        cur = self.conn.cursor()
+        res = cur.execute(query, args)
+        struct_res = [ Note(id=id_, title=title, content=content) for id_, title, content in res.fetchall() ]
+        if len(struct_res) > 0:
+            return struct_res[0]
+        return None
 
     def update(self, entry: Note):
         args = (entry.title, entry.content, entry.id)

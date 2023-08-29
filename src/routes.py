@@ -47,6 +47,13 @@ def notes(request, note_id):
         note_id = int(note_id)
         db.delete(note_id)
         return build_response(code=204)
+    if request.method == 'GET':
+        note_id = int(note_id)
+        note = db.get(note_id)
+        if not note:
+            return build_response(code=404)
+        print(note.to_json())
+        return build_response(code=200, body=note.to_json(), headers="Content-Type: application/json")
     return build_response(code=405)
 
 

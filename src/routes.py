@@ -1,6 +1,6 @@
 from database import Database, Note
 
-from urllib.parse import unquote_plus
+from html import escape
 from utils import load_template, build_response
 
 db = Database('database')
@@ -16,7 +16,7 @@ def index(request):
     # Se tiver curiosidade: https://docs.python.org/3/tutorial/datastructures.html#list-comprehensions
     note_template = load_template('components/note.html')
     notes_li = [
-        note_template.format(title=note_object.title, details=note_object.content, note_id=note_object.id)
+        note_template.format(title=escape(note_object.title), details=escape(note_object.content), note_id=note_object.id)
         for note_object in db.get_all()
     ]
     notes = '\n'.join(notes_li)

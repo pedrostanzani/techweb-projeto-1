@@ -10,8 +10,6 @@ def handle_request(request: Request):
     route = request.route
     filepath = CUR_DIR / route
 
-    print("ROUTE >>", route)
-
     # Static file handling
     if filepath.is_file():
         if str(filepath).endswith(".svg"):

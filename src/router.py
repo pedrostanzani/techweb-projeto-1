@@ -40,11 +40,13 @@ def handle_request(request: Request):
 
     elif route.startswith('editar'):
         paths = route.split('/')
-        if paths != 2:
-            response = build_response(code=400)
+        if paths[0] != 'editar':
+            return routes.error()
+        if len(paths) != 2:
+            return build_response(code=400)
         note_id = paths[-1]
         if not note_id.isdigit():
-            response = build_response(code=400)
+            return build_response(code=400)
         response = routes.edit_note(request, note_id)
 
     else:

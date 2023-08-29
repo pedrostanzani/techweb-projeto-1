@@ -40,5 +40,7 @@ const fetchNote = (noteId) => {
       noteTitleInput.value = title;
       noteContentInput.value = content;
     })
-    .catch((error) => console.log("error", error));
+    .catch((error) => {
+      window.location.replace("/404");
+    });
 };

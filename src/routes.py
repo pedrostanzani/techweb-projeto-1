@@ -83,3 +83,9 @@ def edit_note(request, note_id):
 
         return build_response(code=303, reason='See Other', headers='Location: /')
     return build_response(code=405)
+
+
+def error():
+    response_body = load_template('404.html')
+    response = build_response(body=response_body)
+    return response

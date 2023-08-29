@@ -295,6 +295,24 @@ Algumas informações úteis e dicas:
   color: rgba(41, 37, 36, 0.7)
 }
  
+
+.not-found-container {
+  max-width: 48rem;
+  margin: auto;
+  margin-top: 2rem;
+  padding: 0 1rem;
+}
+
+.not-found-container h1 {
+  margin: 1rem 0;
+  font-size: 1.75rem;
+  font-weight: bold;
+}
+
+.not-found-container img {
+  margin-top: 1rem;
+  max-width: 100%;
+}
  
  /* Você pode usar o CSS comentado abaixo, se ajudar */
  /* Fonte: https://codepen.io/CrisWoler/pen/ogXBLj */

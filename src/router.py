@@ -1,6 +1,6 @@
 import routes
 
-from utils import read_file, build_response
+from utils import read_file, build_response, load_template
 from request import Request
 from pathlib import Path
 
@@ -48,6 +48,6 @@ def handle_request(request: Request):
         response = routes.edit_note(request, note_id)
 
     else:
-        response = build_response(code=404)
+        response = routes.error()
 
     return response

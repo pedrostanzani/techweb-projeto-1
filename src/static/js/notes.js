@@ -19,3 +19,18 @@ const deleteNote = (noteId) => {
     })
     .catch((error) => console.log("error", error));
 };
+
+// let currentColor = 0;
+// const handleColorButtonClick = (buttonId) => {
+//   // console.log(buttonId, currentColor);
+//   const colorPickerButtons = document.querySelectorAll('.color-picker-btn');
+//   colorPickerButtons[currentColor].classList.remove('color-picker-btn--selected');
+//   colorPickerButtons[buttonId].classList.add('color-picker-btn--selected');
+//   currentColor = buttonId;
+// }
+
+
+const main = () => {
+}
+
+main();

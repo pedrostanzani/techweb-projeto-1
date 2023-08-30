@@ -325,6 +325,57 @@ Algumas informações úteis e dicas:
   margin-top: 1rem;
   max-width: 100%;
 }
+
+.color-picker-btn {
+  width: 1.5rem;
+  height: 1.5rem;
+  border-radius: 9999px;
+  border: none;
+  /* padding: 2px; */
+  background-clip: content-box;
+}
+
+.color-picker-btn:hover {
+  cursor: pointer;
+}
+
+.color-picker-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 4px;
+  margin-bottom: 1rem;
+}
+
+.color-picker-btn--selected {
+  border: 1px solid black;
+}
+
+/* div, input {
+  box-sizing: border-box;
+} */
+
+input[type="radio"] {
+	appearance: none;
+	/* background, border etc to customize */ 
+  width: 1.5rem;
+  height: 1.5rem;
+  border-radius: 9999px;
+  border: none;
+  margin: 0;
+  /* padding: 2px; */
+  background-clip: content-box;
+}
+
+input[type="radio"] {
+  cursor: pointer;
+}
+
+input[type="radio"]:checked {
+	/* checked state properties */ 
+  border: 1px solid black;
+}
+
  
  /* Você pode usar o CSS comentado abaixo, se ajudar */
  /* Fonte: https://codepen.io/CrisWoler/pen/ogXBLj */

@@ -2,6 +2,7 @@ import socket
 
 from request import Request
 from router import handle_request
+from utils import build_response
 
 SERVER_HOST = '0.0.0.0'
 SERVER_PORT = 8080
@@ -25,7 +26,11 @@ def run_server():
         request.log()
 
         # Router calls requested route
-        response = handle_request(request)
+        try:
+            response = handle_request(request)
+        except Exception as _:
+            response = build_response(code=500)
+
         client_connection.sendall(response)
         client_connection.close()
 

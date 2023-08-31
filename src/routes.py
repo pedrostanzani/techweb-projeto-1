@@ -52,7 +52,6 @@ def edit_note(request, note_id):
 
     if request.method == 'POST':
         params = request.get_query_params()
-        print(params)
         db.update(Note(title=params['titulo'],
                   content=params['detalhes'], color=color_filter(params['color']), id=note_id))
         return build_response(code=303, reason='See Other', headers='Location: /')

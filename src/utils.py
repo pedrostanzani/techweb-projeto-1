@@ -43,7 +43,5 @@ def color_to_class_name(color: str):
 
 def color_filter(color: str):
     if color in class_names:
-        print(color)
         return color
-    print('yellow')
     return 'yellow'
